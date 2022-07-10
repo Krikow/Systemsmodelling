@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-df_with_duplicates = pd.read_excel("/Users/justus/Desktop/Studium/Systemmodellierung/ZugeschnitteneDaten1.xlsx")
+df_with_duplicates = pd.read_excel("/Users/justus/Desktop/Studium/Systemmodellierung/Datenexport.xlsm")
 
 df_without_duplicates = df_with_duplicates.drop_duplicates(subset=['Status description','Status date/time'])
 
@@ -45,9 +45,39 @@ for idx in range(len(df_only_shipmentcreation["Status description"])):
         #print(False)
         continue
 
+for idx in range(len(df_only_shipmentcreation["Status description"])):
+    #print(idx)
+    if "Delivery failed" in df_only_shipmentcreation["Status description"][idx]:
+        #print(idx, df_only_shipmentcreation["Status description"][idx])
+        df_only_shipmentcreation["Status description"][idx] = "Delivery failed"
+
+    else:
+        #print(False)
+        continue
+
+for idx in range(len(df_only_shipmentcreation["Status description"])):
+    #print(idx)
+    if "Pickup failed" in df_only_shipmentcreation["Status description"][idx]:
+        #print(idx, df_only_shipmentcreation["Status description"][idx])
+        df_only_shipmentcreation["Status description"][idx] = "Pickup failed"
+
+    else:
+        #print(False)
+        continue
+
+for idx in range(len(df_only_shipmentcreation["Status description"])):
+    #print(idx)
+    if "Shipment refused" in df_only_shipmentcreation["Status description"][idx]:
+        #print(idx, df_only_shipmentcreation["Status description"][idx])
+        df_only_shipmentcreation["Status description"][idx] = "Shipment refused"
+
+    else:
+        #print(False)
+        continue
+
 #print(df_only_shipmentcreation["Status description"].value_counts())
 
 df_only_shipmentcreation.to_excel("Humbug.xlsx")
 
-print("Länge df_only_shipmentcreation:", len(df_only_shipmentcreation),",", "Länge df_without_duplicates:", len(df_without_duplicates))
+print("Fertig")
 
